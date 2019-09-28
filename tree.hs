@@ -22,10 +22,21 @@ search (NonEmpty t left right) a
 	| otherwise = True
 
 
-printTree :: (Show t, Num t) => Tree t -> String
+printTree :: Show t => Tree t -> String
 printTree Empty = ""
 printTree (NonEmpty t left right) =
 	" <" ++(printTree left) ++ " ." ++ show t ++ " " ++ (printTree right) ++ ">"
 
 instance Show a => Show (Tree a) where
     show = printTree
+
+makeTreeFromList:: Ord t => [t] -> Tree t
+makeTreeFromList [] = Empty
+makeTreeFromList (x:xs) = insert (makeTreeFromList xs) x
+
+
+getListFromTree:: Ord t => Tree t -> [t]
+getListFromTree Empty = []
+getListFromTree (NonEmpty n left right) =
+	getListFromTree left ++ [n] ++ getListFromTree right
+
