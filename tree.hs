@@ -22,7 +22,7 @@ search (NonEmpty t left right) a
 	| otherwise = True
 
 
-printTree :: (Show t, Num t) => Tree t -> String
+printTree :: Show t => Tree t -> String
 printTree Empty = ""
 printTree (NonEmpty t left right) =
 	" <" ++(printTree left) ++ " ." ++ show t ++ " " ++ (printTree right) ++ ">"
