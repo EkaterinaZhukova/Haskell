@@ -29,3 +29,7 @@ printTree (NonEmpty t left right) =
 
 instance Show a => Show (Tree a) where
     show = printTree
+
+makeTreeFromList:: Ord t => [t] -> Tree t
+makeTreeFromList [] = Empty
+makeTreeFromList (x:xs) = insert (makeTreeFromList xs) x
