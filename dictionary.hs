@@ -15,3 +15,8 @@ insert p@(NonEmpty tuple nextItem) tupleToInsert
 	| otherwise									= NonEmpty tuple (insert nextItem tupleToInsert)
 
 
+getValue :: Ord d => (Map d) -> d -> (Maybe d)
+getValue Empty d = Nothing
+getValue p@(NonEmpty tuple nextItem) key
+	| (fst tuple) == key	= 	Just (snd tuple)
+	| otherwise				= 	(getValue nextItem key)
